@@ -32,7 +32,25 @@
 
 ## Решение:
 
-Приложение использует `Java 16`, `Spring Boot 2.4.4`, `PostgreSQL 13`, 
+Приложение использует `Java 16`, `Spring Boot 2.4.4`, `PostgreSQL 13.2`, 
 `Spring Data JDBC`, `Thymeleaf`.
 
-Скрипт создания базы данных находится в `INIT.sql`. Далее...
+Приложение использует базу данных, которая создаётся путём ввода следующих 
+команд в утилите psql:
+
+    psql postgres
+    CREATE USER admin WITH PASSWORD '1234';
+    CREATE DATABASE converter_db OWNER admin;
+    \q
+    
+Возможно, перед созданием текущих базы и пользователя придётся удалить 
+старых с такими же названиями:
+
+    psql postgres
+    DROP DATABASE IF EXISTS converter_db;
+    DROP USER IF EXISTS admin;
+    \q
+
+Также базу данных можно импортировать из моего дампа `converter_dump.sql`.
+
+Проект ещё не завершён...
